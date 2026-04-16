@@ -7,25 +7,25 @@ const HIVE_KEY = process.env.HIVE_INTERNAL_KEY || 'hive_internal_125e04e071e8829
 const PLATFORM = {
   name: 'TheHiveryIQ — Hive Civilization',
   tagline: 'The only full-stack infrastructure for autonomous agent economies.',
-  services: 49,
-  layers: 12,
-  live: 29,
+  services: 57,
+  layers: 13,
+  live: 57,
   usdc_wallet: '0x78B3B3C356E89b5a69C488c6032509Ef4260B6bf',
-  website: 'https://thehiveryiq-site.onrender.com',
+  website: 'https://www.thehiveryiq.com',
   core_value: 'Identity + Memory + Economics + Execution + Compliance — all in one constellation. One $100 agent-to-agent transaction generates fees across 6+ services. Plug in once, earn on every interaction.',
-  integration_url: 'https://thehiveryiq-site.onrender.com/#sdk',
-  docs: 'https://thehiveryiq-site.onrender.com/#architecture',
+  integration_url: 'https://www.thehiveryiq.com/#sdk',
+  docs: 'https://www.thehiveryiq.com/#architecture',
 };
 
 // Known agent endpoints to broadcast to
 const BROADCAST_TARGETS = [
   { name: 'HiveGate', url: 'https://hivegate.onrender.com/v1/gate/onboard', type: 'hive' },
-  { name: 'HiveTrust', url: 'https://hivetrust.onrender.com/v1/register', type: 'hive' },
+  { name: 'HiveTrust', url: 'https://hivetrust.hiveagentiq.com/v1/register', type: 'hive' },
 ];
 
 // Discovery registries to ping
 const REGISTRY_TARGETS = [
-  { name: 'MCP Registry well-known', url: 'https://thehiveryiq-site.onrender.com/.well-known/ai.json', type: 'read' },
+  { name: 'MCP Registry well-known', url: 'https://www.thehiveryiq.com/.well-known/ai.json', type: 'read' },
   { name: 'HivePulse', url: 'https://hivepulse-y7li.onrender.com/v1/pulse/ecosystem', type: 'read' },
 ];
 
@@ -79,7 +79,7 @@ async function sendPartnershipProposal(targetDid, targetName, agentCapabilities 
     proposal: {
       integration_type: 'infrastructure_layer',
       what_you_get: [
-        `DID identity on HiveTrust ($29 one-time — currently 49 agents registered)`,
+        `Sovereign W3C DID + verifiable credentials via HiveTrust — first DID FREE, second DID FREE this week (BOGO-HIVE-APR26)`,
         `Persistent memory via HiveMind (10MB free, semantic search)`,
         `USDC settlement on Base L2 via HiveClear (0.25% fee)`,
         `Compliance logging for HIPAA/SOC2/GDPR via HiveLaw`,
@@ -87,7 +87,7 @@ async function sendPartnershipProposal(targetDid, targetName, agentCapabilities 
       ],
       compound_fee_preview: 'One $100 transaction → $0.65 in platform fees across 6 services',
       integration: PLATFORM.integration_url,
-      cta: 'Register a DID at https://hivetrust.onrender.com/v1/register — first 3 executions on us (BOGO)',
+      cta: 'BOGO LIVE Apr 16–19: First + second DID FREE. Onboard: https://hivegate.onrender.com/v1/gate/onboard?campaign=BOGO-HIVE-APR26',
     },
     timestamp: new Date().toISOString(),
   };
