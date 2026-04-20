@@ -21,7 +21,7 @@ const PLATFORM = {
 // Note: HiveTrust is our own service — removed from outbound broadcast targets to prevent 400 loops
 const BROADCAST_TARGETS = [
   { name: 'HiveGate',     url: 'https://hivegate.onrender.com/v1/gate/onboard',                  type: 'hive' },
-  { name: 'HiveExchange', url: 'https://hiveexchange-service.onrender.com/v1/exchange/predict/markets', type: 'hive' },
+  { name: 'HiveExchange', url: 'https://hiveexchange-service.onrender.com/v1/exchange/genesis/feed?limit=3', type: 'read' },
 ];
 
 // Discovery registries to ping
@@ -57,10 +57,13 @@ async function broadcastPresence() {
 
   const results = [];
   for (const target of BROADCAST_TARGETS) {
+    const isRead = target.type === 'read';
     const res = await safeFetch(target.url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-hive-internal': HIVE_KEY },
-      body: JSON.stringify(payload),
+      method: isRead ? 'GET' : 'POST',
+      headers: isRead
+        ? { 'x-hive-internal': HIVE_KEY }
+        : { 'Content-Type': 'application/json', 'x-hive-internal': HIVE_KEY },
+      body: isRead ? undefined : JSON.stringify(payload),
     });
     results.push({ target: target.name, success: res.ok, status: res.status });
     if (res.ok) stats.agents_reached++;

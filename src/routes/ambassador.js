@@ -18,6 +18,16 @@ r.get('/v1/ambassador/record/:id', (q, s) => {
   s.json(rec);
 });
 
+r.get('/v1/ambassador/status', (_, s) => s.json({
+  status: 'operational',
+  service: 'hive-ambassador-agent',
+  version: '1.0.0',
+  did: 'did:hive:hiveforce-ambassador',
+  stats: e.getStats(),
+  recent_records: e.listRecords().slice(-5),
+  timestamp: new Date().toISOString(),
+}));
+
 r.get('/v1/ambassador/stats', (_, s) => s.json(e.getStats()));
 
 r.get('/v1/ambassador/records', (_, s) => s.json({ records: e.listRecords() }));
