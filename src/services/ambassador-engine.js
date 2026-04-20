@@ -21,7 +21,7 @@ const PLATFORM = {
 // Note: HiveTrust is our own service — removed from outbound broadcast targets to prevent 400 loops
 const BROADCAST_TARGETS = [
   { name: 'HiveGate',     url: 'https://hivegate.onrender.com/v1/gate/onboard',                  type: 'hive' },
-  { name: 'HiveExchange', url: 'https://hiveexchange-service.onrender.com/v1/exchange/welcome',    type: 'hive' },
+  { name: 'HiveExchange', url: 'https://hiveexchange-service.onrender.com/v1/exchange/predict/markets', type: 'hive' },
 ];
 
 // Discovery registries to ping
